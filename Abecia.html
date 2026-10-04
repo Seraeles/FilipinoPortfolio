@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epilogo - Abecia</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #111111;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            animation: fadeIn 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        body.fade-out {
+            animation: fadeOut 0.3s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+
+        /* Outer Wrapper for Floating Button Positioning */
+        .page-wrapper {
+            position: relative;
+            max-width: 850px;
+            width: 100%;
+        }
+
+        /* Floating Return Button */
+        .back-btn-floating {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #111111;
+            background: #ffffff;
+            border: 3px solid #111111;
+            padding: 8px 18px;
+            box-shadow: 4px 4px 0px #111111;
+            transition: all 0.15s ease;
+            z-index: 10;
+        }
+
+        .back-btn-floating:hover {
+            background: #111111;
+            color: #ffffff;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #111111;
+        }
+
+        /* Main Information Box */
+        .info-box {
+            position: relative;
+            width: 100%;
+            background: #ffffff;
+            border: 3px solid #111111;
+            box-shadow: 10px 10px 0px #111111;
+            padding: 45px;
+            overflow: hidden;
+        }
+
+        /* SVG Container for Diagonal Lines */
+        .svg-diagonal-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 250px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Content Container */
+        .content-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header Styling */
+        .header-area {
+            border-bottom: 3px solid #111111;
+            padding-bottom: 18px;
+            margin-bottom: 28px;
+        }
+
+        .member-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #111111;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* Epilogo Content */
+        .essay-content {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: #222222;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .essay-content p {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        /* Highlight Quote Box */
+        .quote-box {
+            background: #18181b;
+            color: #ffffff;
+            border: 2px solid #111111;
+            padding: 16px 20px;
+            font-style: italic;
+            font-size: 1.05rem;
+            text-align: center;
+            margin-bottom: 10px;
+            box-shadow: 4px 4px 0px #111111;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <!-- Return Button pointing to #epilogo -->
+        <a href="index.html#epilogo" onclick="transitionBack(event)" class="back-btn-floating">
+            &larr; BUMALIK SA PORTFOLIO
+        </a>
+
+        <!-- Main Information Box -->
+        <div class="info-box">
+            
+            <!-- SVG Diagonal Blue Lines -->
+            <svg class="svg-diagonal-lines" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="30" y1="0" x2="0" y2="30" stroke="#2563eb" stroke-width="2.5" stroke-opacity="0.35" />
+                <line x1="55" y1="0" x2="0" y2="55" stroke="#2563eb" stroke-width="4" stroke-opacity="0.35" />
+                <line x1="85" y1="0" x2="0" y2="85" stroke="#2563eb" stroke-width="1.5" stroke-opacity="0.3" />
+                <line x1="120" y1="0" x2="0" y2="120" stroke="#2563eb" stroke-width="5" stroke-opacity="0.35" />
+                <line x1="150" y1="0" x2="0" y2="150" stroke="#2563eb" stroke-width="2" stroke-opacity="0.25" />
+                <line x1="185" y1="0" x2="0" y2="185" stroke="#2563eb" stroke-width="6" stroke-opacity="0.3" />
+                <line x1="220" y1="0" x2="0" y2="220" stroke="#2563eb" stroke-width="3" stroke-opacity="0.2" />
+            </svg>
+
+            <div class="content-container">
+                <!-- Header -->
+                <div class="header-area">
+                    <h1 class="member-title">ABECIA</h1>
+                    <div class="sub-title">EPILOGO — GRADE 12 CETTI</div>
+                </div>
+
+                <!-- Essay Text -->
+                <div class="essay-content">
+                    <div class="quote-box">
+                        &ldquo;Overcoming hurdles and mastering skills—Senior High School was an irreplaceable journey.&rdquo;
+                    </div>
+
+                    <p>
+                        Sa simula, nagdala ng matinding pagsubok ang asignaturang Filipino 201 dahil sa mga hindi inaasahang pagkakataon at kawalan ng regular na klase sa loob ng ilang linggo. Ang pakiramdam na naiwan sa mga aralin ay nagdulot ng labis na pag-aalala, ngunit ang pagdating ng aming bagong guro ang naging tulay upang muli kaming makahabol at mas higit pang manguna sa aming talakayan. Sa pamamagitan ng maayos na paggabay, natutuhan ng mag-aaral ang mga batayang kasanayan sa pagsusuri ng teksto at pagbuo ng bionote. Ang karanasang ito ay nagturo ng kahalagahan ng katatagan, disiplina, at masusing paglalahad ng sarili at ng mga ideya.
+                    </p>
+
+                    <p>
+                        Habang nagpapatuloy ang semestre, naging mas madali at malinaw ang pag-unawa sa mga praktikal na sulatin tulad ng memorandum, adyenda, at katitikan ng pulong. Ang pagbuo naman ng panukalang proyekto ay nagbigay ng malalim na kaalaman sa kung paano maglatag ng mga organisadong solusyon para sa mga hinaharap na hamon. Napatunayan ng mag-aaral na ang mga kasanayang ito sa pormal na pagsulat at pag-oorganisa ng impormasyon ay hindi lamang para sa silid-aralan, kundi mga totoong kasanayang magagamit niya sa kaniyang hinaharap na karera—lalo na sa pagbuo ng mga propesyonal na portfolio at pormal na komunikasyon.
+                    </p>
+
+                    <p>
+                        Sa pangkalahatan, ang paglalakbay sa Ika-12 Baitang sa asignaturang Filipino ay naging isang napakahalaga at hindi mapapalitang karanasan. Sa kabila ng mga paunang hamon, ang mga sandali ng sama-samang pagkatuto, kasiyahan, at balanseng kapaligiran sa klase ay nag-iwan ng malalim na marka na hindi maihahambing sa alinmang nakaraang taon. Ang Filipino 201 ay hindi lamang nag-iwan ng mga akademiko at propesyonal na kaalaman, kundi nagturo rin ng kahalagahan ng pakikibagay, pagtutulungan, at pagpapahalaga sa bawat hakbang ng pag-aaral.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function transitionBack(event) {
+            event.preventDefault();
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = 'index.html#epilogo';
+            }, 300);
+        }
+    </script>
+</body>
+</html>

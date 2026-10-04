@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epilogo - Bioco</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #111111;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            animation: fadeIn 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        body.fade-out {
+            animation: fadeOut 0.3s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+
+        /* Outer Wrapper para sa Floating Button Positioning */
+        .page-wrapper {
+            position: relative;
+            max-width: 850px;
+            width: 100%;
+        }
+
+        /* Floating Return Button sa Taas at Kaliwa ng Box */
+        .back-btn-floating {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #111111;
+            background: #ffffff;
+            border: 3px solid #111111;
+            padding: 8px 18px;
+            box-shadow: 4px 4px 0px #111111;
+            transition: all 0.15s ease;
+            z-index: 10;
+        }
+
+        .back-btn-floating:hover {
+            background: #111111;
+            color: #ffffff;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #111111;
+        }
+
+        /* Main Information Box */
+        .info-box {
+            position: relative;
+            width: 100%;
+            background: #ffffff;
+            border: 3px solid #111111;
+            box-shadow: 10px 10px 0px #111111;
+            padding: 45px;
+            overflow: hidden;
+        }
+
+        /* SVG Container para sa mga Linyang Nakadikit sa Top at Left Walls */
+        .svg-diagonal-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 250px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Content Container */
+        .content-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header Styling */
+        .header-area {
+            border-bottom: 3px solid #111111;
+            padding-bottom: 18px;
+            margin-bottom: 28px;
+        }
+
+        .member-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #111111;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* Epilogo Content */
+        .essay-content {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: #222222;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .essay-content p {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        /* Highlight Quote Box */
+        .quote-box {
+            background: #18181b;
+            color: #ffffff;
+            border: 2px solid #111111;
+            padding: 16px 20px;
+            font-style: italic;
+            font-size: 1.05rem;
+            text-align: center;
+            margin-bottom: 10px;
+            box-shadow: 4px 4px 0px #111111;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <!-- Return Button na may #epilogo hash -->
+        <a href="index.html#epilogo" onclick="transitionBack(event)" class="back-btn-floating">
+            &larr; BUMALIK SA PORTFOLIO
+        </a>
+
+        <!-- Main Information Box -->
+        <div class="info-box">
+            
+            <!-- SVG Diagonal Blue Lines -->
+            <svg class="svg-diagonal-lines" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="30" y1="0" x2="0" y2="30" stroke="#2563eb" stroke-width="2.5" stroke-opacity="0.35" />
+                <line x1="55" y1="0" x2="0" y2="55" stroke="#2563eb" stroke-width="4" stroke-opacity="0.35" />
+                <line x1="85" y1="0" x2="0" y2="85" stroke="#2563eb" stroke-width="1.5" stroke-opacity="0.3" />
+                <line x1="120" y1="0" x2="0" y2="120" stroke="#2563eb" stroke-width="5" stroke-opacity="0.35" />
+                <line x1="150" y1="0" x2="0" y2="150" stroke="#2563eb" stroke-width="2" stroke-opacity="0.25" />
+                <line x1="185" y1="0" x2="0" y2="185" stroke="#2563eb" stroke-width="6" stroke-opacity="0.3" />
+                <line x1="220" y1="0" x2="0" y2="220" stroke="#2563eb" stroke-width="3" stroke-opacity="0.2" />
+            </svg>
+
+            <div class="content-container">
+                <!-- Header -->
+                <div class="header-area">
+                    <h1 class="member-title">RODERICK A. BIOCO</h1>
+                    <div class="sub-title">EPILOGO — GRADE 12 CETTI</div>
+                </div>
+
+                <!-- Essay Text -->
+                <div class="essay-content">
+                    <div class="quote-box">
+                        &ldquo;Game set, match! High school cleared.&rdquo;
+                    </div>
+
+                    <p>
+                        Sa una, maaaring tila magkakahiwalay lamang na gawain sa pagsulat ang mga aralin sa Filipino, ngunit habang nagpapatuloy ang mag-aaral sa bawat gawain, mas naging malinaw ang ugnayan ng mga ito. Bawat gawain ay nagturo ng iba’t ibang paraan ng pagpapahayag ng ideya, pag-oorganisa ng impormasyon, at pakikipagkomunikasyon sa iba. Sa pagsusuri ng mga teksto, natutuhan ng mag-aaral na maging mas mapanuri sa mga impormasyong binabasa, habang sa pagsulat ng bionote ay nagkaroon siya ng pagkakataong maipakilala ang kaniyang sarili nang maikli at malinaw. Nakatulong ang mga karanasang ito upang maging mas maingat siya sa pagpili, pag-aayos, at paglalahad ng impormasyon.
+                    </p>
+
+                    <p>
+                        Habang nagpapatuloy ang mga aralin, natutuhan din ng mag-aaral kung paano nagagamit ang pagsulat sa mga praktikal na sitwasyon. Isa sa mga araling higit na naging kapaki-pakinabang para sa kaniya ay ang tungkol sa memorandum at sa iba’t ibang uri nito, tulad ng memorandum para sa kahilingan, kabatiran, at pagtugon. Nakatulong din ang pag-aaral ng adyenda at katitikan ng pulong upang maunawaan niya kung paano nagiging mas organisado ang isang pagpupulong mula sa pagtatakda ng mga paksang tatalakayin hanggang sa pagtatala ng mahahalagang napag-usapan at napagkasunduan. Naging mahalaga ang mga araling ito para sa mag-aaral dahil ipinakita nitong hindi lamang ginagamit ang wastong pagsulat sa mga gawaing pang-akademiko, kundi maging sa mga sitwasyong nangangailangan ng malinaw na komunikasyon at organisasyon.
+                    </p>
+
+                    <p>
+                        Ang mga natutuhan ay higit pang nagamit sa paggawa ng panukalang proyekto, kung saan natutuhan ng mag-aaral kung paano maglahad ng solusyon sa isang problema sa malinaw at organisadong paraan. Kinailangan din niyang isaalang-alang ang layunin, plano, badyet, at mga taong makikinabang sa proyekto. Sa pagbabalik-tanaw sa iba't ibang gawain, napagtanto ng mag-aaral na higit pa sa simpleng pagsulat ang itinuro ng asignaturang Filipino. Nahubog nito ang kaniyang kakayahan sa pagsusuri ng impormasyon, pag-oorganisa ng mga ideya, malinaw na pakikipagkomunikasyon, at paglalahad ng mga mungkahi mga kasanayang maaari niyang magamit sa paaralan at sa mga susunod na sitwasyon sa hinaharap.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function transitionBack(event) {
+            event.preventDefault();
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = 'index.html#epilogo';
+            }, 300);
+        }
+    </script>
+</body>
+</html>

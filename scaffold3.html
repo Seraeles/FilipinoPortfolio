@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scaffold 3 - Panukalang Proyekto</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #111111;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            overflow: hidden;
+            animation: fadeInPage 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        body.fade-out {
+            animation: fadeOutPage 0.3s ease-in forwards;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOutPage {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-actions {
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            color: #111111;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            display: inline-block;
+            border: 3px solid #111111;
+            padding: 10px 20px;
+            background: #ffffff;
+            box-shadow: 4px 4px 0px #111111;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, color 0.2s;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .back-btn:hover { 
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #111111;
+            background: #111111; 
+            color: #ffffff; 
+        }
+
+        .back-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #111111;
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* MAIN CONTAINER BOX */
+        .main-box {
+            border: 3px solid #111111;
+            background: #ffffff;
+            box-shadow: 8px 8px 0px #111111;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        /* TABS NAVIGATION HEADER */
+        .tabs-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 15px 20px;
+            background: #111111;
+            border-bottom: 3px solid #111111;
+        }
+
+        .tab-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #ffffff;
+            color: #111111;
+            border: 2px solid #ffffff;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .tab-btn:hover {
+            background: #d97706;
+            color: #ffffff;
+            border-color: #d97706;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: #111111;
+            border-color: #ffffff;
+            box-shadow: 0px 3px 0px #d97706;
+        }
+
+        /* TAB CONTENT AREA */
+        .tab-content {
+            display: none;
+            padding: 35px 40px;
+            overflow-y: auto;
+            flex: 1;
+            background: #ffffff;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #111111;
+            border-bottom: 4px solid #111111;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .tab-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #111111;
+        }
+
+        .tab-content p, .tab-content li {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: #222222;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .tab-content ul, .tab-content ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .tab-content li {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        /* BRUTALIST BUDGET TABLE */
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95rem;
+            border: 3px solid #111111;
+        }
+
+        .budget-table th, .budget-table td {
+            border: 2px solid #111111;
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        .budget-table th {
+            background-color: #111111;
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .budget-table tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+
+        .budget-table tr.total-row {
+            font-weight: 700;
+            background-color: #f1f1f1;
+        }
+
+        /* DOCUMENTATION IMAGES FRAME */
+        .image-gallery {
+            display: flex;
+            gap: 25px;
+            margin: 20px 0 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .image-card {
+            border: 3px solid #111111;
+            box-shadow: 6px 6px 0px #111111;
+            background: #ffffff;
+            padding: 10px;
+            width: 320px;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border: 1px solid #111111;
+            display: block;
+        }
+
+        /* Scrollbar Styling */
+        .tab-content::-webkit-scrollbar {
+            width: 100px;
+            width: 10px;
+        }
+        .tab-content::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-left: 2px solid #111111;
+        }
+        .tab-content::-webkit-scrollbar-thumb {
+            background: #111111; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-actions">
+            <a href="index.html" onclick="transitionToPage(event, 'index.html')" class="back-btn">&larr; Bumalik sa Home</a>
+        </div>
+
+        <div class="main-box">
+            <!-- TABS HEADER -->
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="openTab(event, 'abstrak')">I. Abstrak</button>
+                <button class="tab-btn" onclick="openTab(event, 'konteksto')">II. Konteksto</button>
+                <button class="tab-btn" onclick="openTab(event, 'katwiran')">III. Katwiran ng Proyekto</button>
+                <button class="tab-btn" onclick="openTab(event, 'layunin')">IV. Layunin</button>
+                <button class="tab-btn" onclick="openTab(event, 'target')">V. Target na Benepisyaryo</button>
+                <button class="tab-btn" onclick="openTab(event, 'implementasyon')">VI. Implementasyon</button>
+                <button class="tab-btn" onclick="openTab(event, 'pagmonitor')">VII. Pagmonitor at Ebalwasyon</button>
+                <button class="tab-btn" onclick="openTab(event, 'pangasiwaan')">VIII. Pangasiwaan at Tauhan</button>
+                <button class="tab-btn" onclick="openTab(event, 'lakip')">IX. Mga Lakip</button>
+            </div>
+
+            <!-- I. ABSTRAK -->
+            <div id="abstrak" class="tab-content active">
+                <h2>I. ABSTRAK</h2>
+                <p>
+                    Ang <strong>"PROJECT MALINIS AT LIGTAS: Cogon Market Sanitation Drive"</strong> ay isang inisyatiba ng Sangguniang Kabataan (SK) ng Barangay 33 na naglalayong tugunan ang mababang antas ng kalinisan at kakulangan sa pasilidad ng malinis na tubig sa pampublikong pamilihan ng Cogon, Lungsod ng Cagayan de Oro. Dahil sa mataas na antas ng foot traffic at siksikan ng mga tindero at mamimili, mabilis ang pagkalat ng bakterya at masangsang na amoy sa lugar. Upang masolusyunan ito, maglalagay ang SK ng limang (5) <em>foot-pedal handwashing barrels</em> sa mga pangunahing pasukan ng palengke, magbibigay ng 100 <em>hygiene kits</em> (sabon, apron, at sanitizer) para sa mga nakarehistrong tindero, at magsasagawa ng oryentasyon ukol sa tamang sanitasyon sa paghawak ng pagkain. Ang proyekto ay isasagawa sa loob ng dalawang buwan na may kabuuang iminumungkahing badyet na Php 35,000 mula sa pondo ng SK.
+                </p>
+            </div>
+
+            <!-- II. KONTEKSTO -->
+            <div id="konteksto" class="tab-content">
+                <h2>II. KONTEKSTO</h2>
+                <p>
+                    Ang Cogon Market ay ang pangunahing sentro ng kalakalan sa Barangay 33 at ang pinakamalaking pampublikong pamilihan sa Lungsod ng Cagayan de Oro. Araw-araw, dinarayo ito ng libu-libong mamimili at daan-daang vendors na nagbebenta ng karne, isda, at gulay. Dahil sa dagsa ng tao at masikip na espasyo sa palengke, nahaharap ang Barangay 33 sa malaking suliranin sa pampublikong kalinisan at sanitasyon.
+                </p>
+                <p>
+                    Sa kasalukuyan, walang maayos at madaling ma-access na libreng pasilidad para sa paghuhugas ng kamay ang mga tindero at mamimili sa mga pangunahing pasukan ng pamilihan. Ang kawalang ito ng maayos na pasilidad ng malinis na tubig, kasabay ng hindi wastong pagtatapon ng mga basurang nagmumula sa palengke, ay nagdudulot ng masangsang na amoy at nagpapataas ng peligro ng pagkalat ng mga nakahahawang sakit at <em>foodborne illnesses</em>. Upang mapanatili ang kaligtasan ng pagkain at kalusugan ng buong komunidad, kinakailangan ang isang direktang interbensyon mula sa Sangguniang Kabataan upang makapagpatayo ng mga angkop na pasilidad sa sanitasyon at makapagbigay ng wastong edukasyon sa mga naghahanapbuhay sa Cogon Market.
+                </p>
+            </div>
+
+            <!-- III. KATWIRAN NG PROYEKTO -->
+            <div id="katwiran" class="tab-content">
+                <h2>III. KATWIRAN NG PROYEKTO</h2>
+                
+                <h3>A. Suliranin</h3>
+                <ol>
+                    <li><strong>Kakulangan sa Pasilidad ng Kalinisan:</strong> Sa kasalukuyan, walang simpleng hugasan ng kamay sa paligid ng Cogon Market. Dahil dito, ang mga tindero at mamimili ay napipilitang humawak ng karne, isda, at gulay kahit marumi ang kanilang mga kamay.</li>
+                    <li><strong>Banta sa Kalusugan at Masamang Amoy:</strong> Ang hindi maayos na pagtatapon ng basura ng palengke at ang kawalan ng hugasan ng kamay ay nagdudulot ng mabahong amoy sa lugar. Ito ay mabilis ding nagpapakalat ng mga nakahahawang sakit sa mga tao.</li>
+                </ol>
+
+                <h3>B. Prayoridad na Pangangailangan</h3>
+                <p>
+                    Batay sa masusing pagsusuri sa kalagayan ng Cogon Market, itinuturing na isang pangunahing prayoridad ang agarang paglalagay ng mga accessible at madaling gamiting pasilidad sa paghuhugas ng kamay. Kinakailangan din ang pamamahagi ng mga batayang kagamitang pangkalinisan upang matiyak ang pagsunod sa mga pamantayan ng pampublikong kalusugan at sanitasyon. Ang interbensyong ito ay mahalaga upang maprotektahan ang kapakanan ng mga mamimili at mapanatili ang kaligtasan ng mga pagkaing ibinebenta sa pampublikong pamilihan.
+                </p>
+
+                <h3>C. Interbensyon</h3>
+                <p>
+                    Upang matugunan ang mga nabanggit na suliranin, ang Sangguniang Kabataan (SK) ng Barangay 33 ay magpapatupad ng isang komprehensibong inisyatiba sa sanitasyon. Magtatayo ang SK ng limang (5) <em>hands-free / foot-pedal handwashing barrels</em> sa mga strategic na pasukan ng Cogon Market upang makapaghugas ng kamay ang mga tao nang hindi kailangang humawak sa gripo, na nakatutulong upang maiwasan ang pagkalat ng mikrobyo. Bukod dito, magrerepak at magnamahagi ang SK ng 100 <em>hygiene kits</em> (sabon, apron, at hand sanitizer) sa mga nakarehistrong ambulant at sidewalk vendors. Kasabay nito, magsasagawa ng isang oryentasyon ukol sa tamang sanitasyon sa paghawak ng pagkain at wastong pagtatapon ng basura sa pakikipagtulungan ng mga eksperto sa kalusugan.
+                </p>
+
+                <h3>D. Mag-iimplementang Organisasyon</h3>
+                <p>
+                    Pangungunahan ng Sangguniang Kabataan (SK) ng Barangay 33 ang pamamahala at pagpapatupad ng proyektong ito. Makikipagtulungan ang SK sa Barangay Health Workers (BHW) upang magbigay ng oryentasyon sa kalusugan, at sa Cogon Market Vendor Association upang masigurong aalagaan at gagamitin nang maayos ng mga tindero ang mga hugasan ng kamay.
+                </p>
+            </div>
+
+            <!-- IV. LAYUNIN -->
+            <div id="layunin" class="tab-content">
+                <h2>IV. LAYUNIN</h2>
+                <p>
+                    Mapataas ang antas ng sanitasyon at mabawasan ang banta ng <em>cross-contamination</em> ng pagkain sa Cogon Market sa pamamagitan ng pagtatayo ng mga pasilidad sa paghuhugas ng kamay, pamamagi ng kagamitang pangkalinisan, at pagbibigay ng edukasyon sa kalusugan sa huling bahagi ng taong 2026.
+                </p>
+
+                <h3>Mga Tiyak na Layunin</h3>
+                <ol>
+                    <li>Makapagpatayo at makapagkabit ng limang (5) <em>foot-pedal handwashing barrels</em> sa mga pangunahing pasukan ng Cogon Market na malapit sa linya ng tubig at kanal sa loob ng unang dalawang linggo ng proyekto.</li>
+                    <li>Makapamahagi ng 100 <em>hygiene kits</em> (naglalaman ng apron, hairnet, sabon, at hand sanitizer) sa mga nakarehistrong ambulant at sidewalk vendors sa Barangay 33.</li>
+                    <li>Makapagsagawa ng isang (1) oryentasyon ukol sa wastong paghawak ng pagkain at pampublikong sanitasyon para sa mga tindero sa pakikipagtulungan ng Barangay Health Workers (BHW).</li>
+                    <li>Makabuo ng isang sistema ng lingguhang pagmomonitor at pagpapalit ng sabon sa pakikipagtulungan ng Cogon Market Vendor Association upang matiyak ang tuloy-tuloy na paggamit ng mga hugasan sa loob ng dalawang buwan.</li>
+                </ol>
+            </div>
+
+            <!-- V. TARGET NA BENEPISYARYO -->
+            <div id="target" class="tab-content">
+                <h2>V. TARGET NA BENEPISYARYO</h2>
+                <p>
+                    <strong>Pangunahing Benepisyaryo:</strong> Ang 100 nakarehistrong ambulant at sidewalk vendors ng Barangay 33 sa Cogon Market. Sila ay direktang makatatanggap ng libreng <em>hygiene kits</em>, makakakuha ng decal stickers para sa kanilang pwesto upang tumaas ang tiwala ng mamimili, at makagagamit ng mga bagong <em>foot-pedal handwashing stations</em>.
+                </p>
+                <p>
+                    <strong>Pangalawang Benepisyaryo:</strong> Ang libu-libong mamimili at residente ng Lungsod ng Cagayan de Oro na pumupunta araw-araw sa Cogon Market. Makikinabang sila sa mas malinis, ligtas, at maayos na pagproseso ng mga pagkaing kanilang binibili, pati na rin sa pagkakaroon ng libreng hugasan ng kamay sa palengke.
+                </p>
+            </div>
+
+            <!-- VI. IMPLEMENTASYON NG PROYEKTO -->
+            <div id="implementasyon" class="tab-content">
+                <h2>VI. IMPLEMENTASYON NG PROYEKTO</h2>
+                <p>
+                    <strong>A. Planong Pagkilos:</strong> Gawin ang proyektong ito sa loob ng walong linggo sa huling bahagi ng taong 2026. Sa unang linggo, kakausapin ang mga lider ng tindero sa Cogon Market at bibilihin ang mga drum, gripo, piyesa para sa pedal, at mga gamit para sa 100 hygiene kits at stickers. Sa ikalawang linggo, bubuoin ang limang foot-pedal na hugasan ng kamay at ikakabit ang mga ito sa limang pasukan ng palengke na malapit sa linya ng tubig at kanal. Sa ikatlong linggo, pupuntahan ng mga Barangay Health Worker at SK volunteers ang bawat pwesto ng tindero sa mga oras na konti ang tao para sa mabilisang 10-minutong usapan tungkol sa kalinisan, kasabay ng pamimigay ng libreng hygiene kits at stickers. Sa ika-apat hanggang ikawalong linggo, magpapatuloy ang lingguhang pagtingin sa mga hugasan at paglalagay ng bagong sabon kasama ang mga lider ng tindero.
+                </p>
+                <p>
+                    <strong>B. Alokasyon ng Tao at Gamit:</strong> Hahatiin ang mga gamit at tao sa tatlong bahagi. Una, ang limang foot-pedal na hugasan ay ilalagay sa limang pasukan ng Cogon Market na may gripo para madaling lagyan ng tubig at malapit sa kanal para hindi bumaha ang paligid. Pangalawa, ang 100 hygiene kits at stickers ay para lamang sa mga nakarehistrong tindero sa kalsada at bangketa ng Barangay 33 na gustong makinig sa mabilisang usapan sa kalinisan. Pangatlo, ang mga Barangay Health Worker at SK volunteers ang mag-iikot sa mga pwesto ng tindero, habang ang mga lider ng tindero ang magbabantay at maglalagay ng sabon sa mga hugasan araw-araw.
+                </p>
+                <p>
+                    <strong>C. Badyet at Gastusin:</strong> Ang kabuuang Php 35,000 na badyet ay hahatiin sa apat na bahagi. Ang Php 14,000 ay gagamitin sa pagbili ng mga drum, tubo, pedal, at gripo para sa limang hugasan. Ang Php 14,000 ay para sa 100 hygiene kits at tote bags na may laman na apron, hairnet, dalawang sabon, at hand sanitizer. Ang Php 4,000 ay para sa paggawa ng mga Malinis at Ligtas na Tindahan stickers, sertipiko, at meryenda habang nag-iikot. Ang natitirang Php 3,000 ay hahatiin sa Php 2,000 para sa tulong-pamasahe o allowance ng mga volunteers at BHW, at Php 1,000 bilang tabi na pera kung sakaling may kailangang ayusin o palitang piyesa.
+                </p>
+
+                <!-- BUDGET TABLE -->
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th>Aytem</th>
+                            <th>Gastos</th>
+                            <th>Karamihan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><em>Washing Station</em></td>
+                            <td>₱14,000</td>
+                            <td>5pcs.</td>
+                        </tr>
+                        <tr>
+                            <td><em>Personal Protective Equipment</em> (Apron, Gloves, Masks, etc.)</td>
+                            <td>₱14,000</td>
+                            <td>100pcs bawat piraso.</td>
+                        </tr>
+                        <tr>
+                            <td>Materyales sa Kampanya at Insentibo</td>
+                            <td>₱4,000</td>
+                            <td>Para sa 100 na tindahan (o kung ilang tindahan ang iikutan)</td>
+                        </tr>
+                        <tr>
+                            <td>Tulong-Pamasahe at Allowance ng mga Boluntir</td>
+                            <td>₱2,000</td>
+                            <td>Para sa mga BHW at SK Volunteers</td>
+                        </tr>
+                        <tr>
+                            <td>Pondo sa Pagpapanatili at Pag-repara</td>
+                            <td>₱1,000</td>
+                            <td>Kontingensiya para sa mga piyesa</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td>Kabuuang Badyet</td>
+                            <td>₱35,000</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- VII. PAGMONITOR AT EBALWASYON -->
+            <div id="pagmonitor" class="tab-content">
+                <h2>VII. PAGMONITOR AT EBALWASYON</h2>
+                <p>
+                    <strong>A. Sistema ng Pagmomonitor:</strong> Magsasagawa ng lingguhang pagmomonitor ang SK Youth Volunteers at Barangay Health Workers sa loob ng dalawang buwan sa Cogon Market. Sa bawat pagbisita, gagamit sila ng simpleng checklist upang tingnan kung buo at gumagana ang limang foot-pedal na hugasan, kung may sapat na tubig at sabon, at kung ginagamit ng mga tindero ang kanilang mga ibinigay na hygiene kit at stickers. Itatala rin sa checklist kung may mga sirang piyesa tulad ng gripo o pedal upang agad itong maipaayos gamit ang pondo ng proyekto. Ang mga ulat mula sa pagmomonitor ay isusumite sa Barangay Council at sa lider ng Cogon Market Vendor Association bawat katapusan ng buwan.
+                </p>
+                <p>
+                    <strong>B. Pagpapanatili (Sustainability):</strong> Upang mapanatiling gumagana ang proyekto kahit matapos na ang dalawang buwan, opisyal na ililipat ang pang-araw-araw na pangangalaga at paglalagay ng sabon sa mga lider ng Cogon Market Vendor Association. Ang barangay at SK naman ang mamamahala sa pag-aayos ng mga sirang tubo o gripo gamit ang contingency fund o pondo ng barangay para sa maintenance. Sa pamamagitan ng pagtutulungang ito, masisigurong magagamit ng komunidad ang mga hugasan sa mahabang panahon.
+                </p>
+            </div>
+
+            <!-- VIII. PANGASIWAAN AT TAUHAN -->
+            <div id="pangasiwaan" class="tab-content">
+                <h2>VIII. PANGASIWAAN AT TAUHAN</h2>
+                <p>
+                    Ang proyektong ito ay pinangungunahan ng SK ng Barangay 33 kasama ang iba pang tulong sa komunidad. Ang SK Chairperson at mga Konsehal ang mamamahala sa buong proyekto, sa pag-aayos ng pera, at sa pakikipag-usap sa mga lider ng Cogon Market. Ang SK Logistics Committee naman ang bibili ng mga drum, gripo, at mga gamit para sa 100 hygiene kits at stickers. Ang mga Barangay Health Worker at SK Youth Volunteers ang mag-iikot sa palengke para sa mabilisang usapan tungkol sa kalinisan at pamimigay ng libreng hygiene kits. Ang mga lider naman ng mga tindero sa Cogon Market ang magbabantay sa limang hugasan araw-araw at maglalagay ng sabon sa kani-kanilang lugar.
+                </p>
+            </div>
+
+            <!-- IX. MGA LAKIP -->
+            <div id="lakip" class="tab-content">
+                <h2>IX. MGA LAKIP</h2>
+                
+                <h3>A. DOKUMENTASYON</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <img src="scaffold3-1.jpg" alt="Hygiene Kit Distribution">
+                    </div>
+                    <div class="image-card">
+                        <img src="scaffold3-2.jpg" alt="Foot-pedal Handwashing Unit">
+                    </div>
+                </div>
+
+                <h3>B. REPERENSYA</h3>
+                <ul>
+                    <li>Barangay 33 Sangguniang Kabataan. (2024). <em>Comprehensive Youth Development Plan (CYDP) 2024–2026</em>. Lungsod ng Cagayan de Oro.</li>
+                    <li>Department of Health. (2020). <em>Guidelines on sanitation and handwashing in public markets</em>. Department of Health Philippines.</li>
+                    <li>Department of the Interior and Local Government. (2018). <em>Sangguniang Kabataan reform act of 2015: Resource guide for local youth development</em>. DILG.</li>
+                    <li>World Health Organization. (2020). <em>Water, sanitation, hygiene, and waste management for public health emergencies</em>. World Health Organization.</li>
+                    <li>UNICEF Philippines. (2020, September 9). <em>Families heavily affected by COVID-19 receive hygiene kits</em>. UNICEF. https://www.unicef.org/philippines/stories/families-heavily-affected-covid-19-receive-hygiene-kits</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabContents = document.querySelectorAll(".tab-content");
+            tabContents.forEach(content => {
+                content.classList.remove("active");
+            });
+
+            // Remove active class from all buttons
+            const tabButtons = document.querySelectorAll(".tab-btn");
+            tabButtons.forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            // Show current tab and activate button
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        /* Smooth Transition Script for Page Redirects */
+        function transitionToPage(event, url) {
+            event.preventDefault();
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 300);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isang Akademikong Paglalakbay - Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:ital,wght@0,400;0,600;0,700;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #111111;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            animation: fadeInPage 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        body.fade-out {
+            animation: fadeOutPage 0.3s ease-in forwards;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOutPage {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+
+        /* UST Logo-Style Split Title Effect (Yellow Version) */
+        .ust-split-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            text-transform: uppercase;
+            display: inline-block;
+            position: relative;
+            color: #111111; /* Bottom half: Dark Charcoal/Black */
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .ust-split-title::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #eab308; /* Top half: UST Golden Yellow */
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 52%);
+            pointer-events: none;
+        }
+
+        .prologo-highlight {
+            color: #d97706;
+            font-weight: 700;
+        }
+
+        /* Main App Layout */
+        .app-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            position: relative;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            height: 100%;
+            background: #ffffff;
+            border-right: 2px solid #111111;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px 30px;
+            z-index: 10;
+        }
+
+        .logo-area h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            color: #111111;
+            text-transform: uppercase;
+            border-bottom: 3px solid #111111;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: auto 0;
+        }
+
+        .nav-link {
+            font-family: 'Space Grotesk', sans-serif;
+            text-decoration: none;
+            color: #111111;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 8px 12px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        .sidebar-footer {
+            border-top: 2px solid #111111;
+            padding-top: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .social-box {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #111111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #111111;
+            transition: background 0.2s;
+        }
+
+        .social-box:hover {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: #666666;
+            line-height: 1.4;
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: #fafafa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .image-frame-container {
+            position: relative;
+            width: 340px;
+            height: 420px;
+        }
+
+        .back-accent-block {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111111;
+            top: 20px;
+            left: -20px;
+            z-index: 1;
+        }
+
+        .main-image-box {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border: 3px solid #111111;
+            background: #ffffff;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .main-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-content-box {
+            flex: 1;
+        }
+
+        .description-text {
+            font-size: 0.95rem;
+            color: #444444;
+            line-height: 1.6;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            max-width: 420px;
+        }
+
+        .signature-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            font-style: italic;
+            color: #111111;
+        }
+
+        /* Interactive Cards */
+        .scaffold-card {
+            width: 320px;
+            height: 200px;
+            border: 3px solid #111111;
+            background: #ffffff;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #111111;
+            box-shadow: 6px 6px 0px #111111;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .scaffold-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 10px 10px 0px #111111;
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        .scaffold-badge {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1.5px solid #111111;
+            padding: 4px 10px;
+            display: inline-block;
+        }
+
+        .scaffold-card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-top: 12px;
+        }
+
+        .scaffold-card-footer {
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-transform: uppercase;
+        }
+
+        /* Section Manager */
+        .section-view {
+            display: none;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .section-view.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Grid for Members */
+        .members-grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            max-width: 860px;
+            width: 100%;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 10px 15px;
+        }
+
+        .member-card-box {
+            width: 155px;
+            height: 75px;
+            border: 3px solid #111111;
+            background: #ffffff;
+            box-shadow: 4px 4px 0px #111111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #111111;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+
+        .member-card-box:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #111111;
+            background: #111111;
+            color: #ffffff;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-info-box {
+            position: relative;
+            width: 90%;
+            max-width: 760px;
+            height: 580px;
+            background: #ffffff;
+            border: 3px solid #111111;
+            box-shadow: 10px 10px 0px #111111;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            padding-bottom: 70px;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            border: 2px solid #111111;
+            background: #ffffff;
+            padding: 4px 12px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #111111;
+            transition: all 0.15s;
+        }
+
+        .modal-close-btn:hover {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        .modal-body-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #222222;
+        }
+
+        .modal-body-content h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: #d97706;
+        }
+
+        .modal-tabs-container {
+            position: absolute;
+            bottom: 20px;
+            right: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-tab-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid #111111;
+            background: #ffffff;
+            color: #111111;
+            padding: 8px 16px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #111111;
+            transition: all 0.15s ease;
+        }
+
+        .modal-tab-btn:hover {
+            background: #d97706;
+            color: #ffffff;
+        }
+
+        .modal-tab-btn.active {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        .modal-body-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-body-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-left: 2px solid #111111;
+        }
+        .modal-body-content::-webkit-scrollbar-thumb {
+            background: #111111;
+        }
+
+        /* Epilogo Horizontal Name List */
+        .epilogo-name-bar {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            white-space: nowrap;
+        }
+
+        .epilogo-name-bar::-webkit-scrollbar {
+            height: 6px;
+        }
+        .epilogo-name-bar::-webkit-scrollbar-thumb {
+            background: #111111;
+        }
+
+        .epilogo-name-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border: 2px solid #111111;
+            background: #ffffff;
+            color: #111111;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #111111;
+            transition: all 0.15s ease;
+            flex-shrink: 0;
+        }
+
+        .epilogo-name-btn:hover {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        .epilogo-name-btn.active {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        /* Compact Dark Center Card for Epilogo One-Liners */
+        .epilogo-display-card {
+            height: 180px;
+            flex: none;
+            background: #18181b;
+            border: 3px solid #111111;
+            box-shadow: 8px 8px 0px #111111;
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            color: #f4f4f5;
+            overflow: hidden;
+        }
+
+        .epilogo-text-body {
+            flex: 1;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #e4e4e7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 15px;
+            line-height: 1.5;
+        }
+
+        .epilogo-open-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #111111;
+            background: #d97706;
+            padding: 6px 12px;
+            border: 2px solid #111111;
+            box-shadow: 2px 2px 0px #111111;
+            transition: all 0.15s ease;
+        }
+
+        .epilogo-open-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #111111;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="logo-area">
+                <h1>Tabs</h1>
+            </div>
+
+            <div class="nav-links">
+                <a href="#" class="nav-link active" onclick="switchSection(event, 'pabalat')">Pabalat</a>
+                <a href="#" class="nav-link" onclick="switchSection(event, 'pamagating')">Pamagating Pahina</a>
+                <a href="#" class="nav-link" onclick="switchSection(event, 'prologo')">Prologo</a>
+                <a href="#" class="nav-link" onclick="switchSection(event, 'talaan')">Talaan ng Nilalaman</a>
+                <a href="#" class="nav-link" onclick="switchSection(event, 'sulatin')">Mga Sulatin</a>
+                <a href="#" class="nav-link" onclick="switchSection(event, 'epilogo')">Epilogo</a>
+                <a href="#" class="nav-link" onclick="switchSection(event, 'bionote-cv')">Bionote / Curriculum Vitae</a>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="social-icons">
+                    <a href="#" class="social-box">FB</a>
+                    <a href="#" class="social-box">IG</a>
+                    <a href="#" class="social-box">YT</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2026 Portfolio Template<br>Xavier University Senior High School
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Panels -->
+        <div class="content-area">
+            
+            <!-- 1. PABALAT -->
+            <div id="pabalat" class="section-view active">
+                <div class="hero-wrapper">
+                    <div class="image-frame-container">
+                        <div class="back-accent-block"></div>
+                        <div class="main-image-box">
+                            <img src="xu.jpg" alt="Portfolio Visual">
+                        </div>
+                    </div>
+                    <div class="text-content-box">
+                        <h2 class="ust-split-title" data-text="Isang Akademikong Paglalakbay" style="font-size: 2.8rem; margin-bottom: 20px;">
+                            Isang Akademikong Paglalakbay
+                        </h2>
+                        <p class="description-text">
+                            Isang komprehensibong portfolio sa FIL 201 na naglalaman ng mga natutunan, sinulat, at mga hakbang sa pag-aaral sa Filipino.
+                        </p>
+                        <div class="signature-text">Xavier University SHS</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. PAMAGATING PAHINA -->
+            <div id="pamagating" class="section-view">
+                <div style="width: 100%; display: flex; justify-content: center; align-items: center; height: 100%;">
+                    <div style="max-width: 750px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 20px; text-align: center; margin: 0 auto;">
+                        
+                        <h2 class="ust-split-title" data-text="PAMAGATING PAHINA" style="font-size: 2.2rem; margin-bottom: 8px;">
+                            PAMAGATING PAHINA
+                        </h2>
+                        
+                        <div style="width: 50px; height: 3px; background: #111111; margin: 0 auto 15px auto;"></div>
+                        
+                        <p style="font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: #111111;">
+                            ISANG AKADEMIKONG PAGLALAKBAY: PINAL NA PORTFOLIO SA FIL 201
+                        </p>
+                        
+                        <p style="font-size: 0.75rem; color: #444444; line-height: 1.4; margin-bottom: 15px;">
+                            <strong>Final Performance Task</strong><br>
+                            Xavier University - Ateneo de Cagayan Senior High School<br>
+                            Pueblo de Oro Campus, Cagayan de Oro City
+                        </p>
+
+                        <div style="border: 2px solid #111111; padding: 20px; background: #ffffff; text-align: left; margin: 0 auto; max-width: 620px;">
+                            <p style="text-align: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase;">
+                                MGA MIYEMBRO (PANGKAT 1 - CETTI):
+                            </p>
+                            
+                            <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                                <div style="display: grid; grid-template-columns: 240px 240px; gap: 10px 40px; font-size: 1.05rem; font-weight: 700; color: #111111;">
+                                    <div>1. Abecia</div>
+                                    <div>10. Mabulay</div>
+                                    <div>2. Abejo</div>
+                                    <div>11. Menchaves</div>
+                                    <div>3. Aganan</div>
+                                    <div>12. Oyao</div>
+                                    <div>4. Andaloc</div>
+                                    <div>13. Tamparong</div>
+                                    <div>5. Anunciado</div>
+                                    <div>14. Echem</div>
+                                    <div>6. Bioco</div>
+                                    <div>15. Hernandez</div>
+                                    <div>7. De Gracia</div>
+                                    <div>16. Jumao-as</div>
+                                    <div>8. Del Rosario</div>
+                                    <div>17. Lumasag</div>
+                                    <div>9. Delligos</div>
+                                    <div></div>
+                                </div>
+                            </div>
+
+                            <div style="border-top: 1px solid #111111; padding-top: 10px; font-size: 0.85rem; font-weight: 600; color: #111111; text-align: left;">
+                                Iniharap kay: <span style="font-weight: 400;">Bb. Kate Paican</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. PROLOGO -->
+            <div id="prologo" class="section-view">
+                <div style="width: 100%; display: flex; justify-content: center; align-items: center; height: 100%;">
+                    <div style="max-width: 750px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 20px; text-align: left; margin: 0 auto;">
+                        
+                        <div style="text-align: center; width: 100%;">
+                            <h2 class="ust-split-title" data-text="PROLOGO" style="font-size: 2.5rem; margin-bottom: 10px;">
+                                PROLOGO
+                            </h2>
+                        </div>
+                        
+                        <div style="width: 60px; height: 3px; background: #111111; margin: 0 auto 25px auto;"></div>
+                        
+                        <div style="font-size: 0.95rem; color: #111111; font-weight: 700; line-height: 1.8; display: flex; flex-direction: column; gap: 20px;">
+                            <p>
+                                Ang asignaturang <span class="prologo-highlight">Filipino 201</span> ay hindi lamang isang simpleng pag-aaral ng wika at panitikan; ito ay isang malalim na paglalakbay ng pagtuklas sa yaman ng ating kultura, pagpapatalas ng kritikal na pag-iisip, at paglinang ng kakayahang makipagtalastasan sa makabagong panahon. Ang portfolio na pinamagatang <em>"Isang Akademikong Paglalakbay"</em> ay patunay ng dedikasyon, pagtutulungan, at masidhing pagsisikap ng Pangkat 1 (Cetti) sa bawat gawaing iniatas sa amin.
+                            </p>
+                            <p>
+                                Sa pamamagitan ng iba't ibang mga pampanitikang sulatin, kritikal na pagsusuri, at mga malikhaing pagtataya na ginabayan ng ating kagalang-galang na guro na si <span class="prologo-highlight">Bb. Kate Paican</span>, naunawaan namin ang tunay na kapangyarihan ng salita. Ang bawat pahina sa portfolio na ito ay sumasalamin sa aming mga hamon na napagtagumpayan, mga aral na napulot, at ang aming patuloy na pag-unlad bilang mga mag-aaral ng <span class="prologo-highlight">Xavier University - Ateneo de Cagayan Senior High School</span>.
+                            </p>
+                            <p>
+                                Iniaalay namin ang komprehensibong gawaing ito hindi lamang upang matugunan ang mga pangangailangan ng kurso, kundi bilang patunay na ang wikang Filipino ay nananatiling buhay, makabuluhan, at sandata sa paghubog ng may-malasakit na kaisipan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. TALAAN NG NILALAMAN -->
+            <div id="talaan" class="section-view">
+                <div class="hero-wrapper">
+                    <div class="text-content-box" style="max-width: 100%;">
+                        
+                        <h2 class="ust-split-title" data-text="TALAAN NG NILALAMAN" style="font-size: 2.5rem; margin-bottom: 20px;">
+                            TALAAN NG NILALAMAN
+                        </h2>
+                        
+                        <p class="description-text" style="max-width: 100%;">
+                            1. Pabalat<br>
+                            2. Pamagating Pahina<br>
+                            3. Prologo<br>
+                            4. Talaan ng Nilalaman<br>
+                            5. Mga Sulatin (Scaffolds 1 - 3)<br>
+                            6. Epilogo<br>
+                            7. Rubrik<br>
+                            8. Bionote at Curriculum Vitae
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. MGA SULATIN (SCAFFOLDS) -->
+            <div id="sulatin" class="section-view">
+                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; padding: 20px; box-sizing: border-box; max-width: 900px; margin: 0 auto;">
+                    
+                    <div style="margin-top: 10px; margin-bottom: 40px; text-align: left; width: 100%;">
+                        <h2 class="ust-split-title" data-text="SCAFFOLDS" style="font-size: 2.8rem; margin-bottom: 8px;">
+                            SCAFFOLDS
+                        </h2>
+                        <div style="width: 80px; height: 4px; background: #111111;"></div>
+                    </div>
+
+                    <div style="flex: 1; width: 100%; display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; margin-bottom: 40px;">
+                        
+                        <a href="scaffold1.html" onclick="transitionToPage(event, 'scaffold1.html')" class="scaffold-card">
+                            <div>
+                                <span class="scaffold-badge">Scaffold 1</span>
+                                <h3 class="scaffold-card-title">Pagsusuri ng Teksto</h3>
+                            </div>
+                            <div class="scaffold-card-footer">
+                                <span>Tingnan ang Detalye</span>
+                                <span style="font-size: 1.2rem;">&rarr;</span>
+                            </div>
+                        </a>
+
+                        <a href="scaffold3.html" onclick="transitionToPage(event, 'scaffold3.html')" class="scaffold-card">
+                            <div>
+                                <span class="scaffold-badge">Scaffold 3</span>
+                                <h3 class="scaffold-card-title">Panukalang Proyekto</h3>
+                            </div>
+                            <div class="scaffold-card-footer">
+                                <span>Tingnan ang Detalye</span>
+                                <span style="font-size: 1.2rem;">&rarr;</span>
+                            </div>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 6. EPILOGO SECTION -->
+            <div id="epilogo" class="section-view">
+                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; padding: 30px; box-sizing: border-box; max-width: 1100px; margin: 0 auto; gap: 20px;">
+                    
+                    <!-- Header & Horizontal Alphabetical Name Navigation -->
+                    <div style="border-bottom: 2px solid #111111; padding-bottom: 12px;">
+                        
+                        <h2 class="ust-split-title" data-text="MGA EPILOGO" style="font-size: 2rem; margin-bottom: 10px;">
+                            MGA EPILOGO
+                        </h2>
+                        
+                        <!-- Horizontal Scrollable/Flex Bar for Names -->
+                        <div class="epilogo-name-bar">
+                            <button class="epilogo-name-btn active" onclick="loadEpilogo('Abecia', 'Abecia.html', `&ldquo;Overcoming hurdles and mastering skills—Senior High School was an irreplaceable journey.&rdquo;`, event)">Abecia</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Abejo', 'Abejo.html', `&ldquo;GG WP, High School! Time to press start on the next stage.&rdquo;`, event)">Abejo</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Aganan', 'Aganan.html', `&ldquo;Trust the process and keep moving forward.&rdquo;`, event)">Aganan</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Andaloc', 'Andaloc.html', `&ldquo;Court is adjourned—on to the next big project.&rdquo;`, event)">Andaloc</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Anunciado', 'Anunciado.html', `&ldquo;Drafted the blueprints, now building the future.&rdquo;`, event)">Anunciado</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Bioco', 'Bioco.html', `&ldquo;Game set, match! High school cleared.&rdquo;`, event)">Bioco</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('De Gracia', 'DeGracia.html', `&ldquo;Pouring my heart into every chapter, doctor loading...&rdquo;`, event)">De Gracia</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Del Rosario', 'DelRosario.html', `&ldquo;Designed with passion, executed with precision.&rdquo;`, event)">Del Rosario</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Delligos', 'Delligos.html', `&ldquo;Leading with heart, learning through science.&rdquo;`, event)">Delligos</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Echem', 'Echem.html', `&ldquo;Played the final solo, time for the encore!&rdquo;`, event)">Echem</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Hernandez', 'Hernandez.html', `&ldquo;Finished the race with purpose and passion.&rdquo;`, event)">Hernandez</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Jumao-as', 'Jumaoas.html', `&ldquo;11 dogs, endless code, and one unforgettable journey.&rdquo;`, event)">Jumao-as</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Lumasag', 'Lumasag.html', `&ldquo;Stepping into the future with zero regrets.&rdquo;`, event)">Lumasag</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Mabulay', 'Mabulay.html', `&ldquo;Managing the chaos, creating the memories.&rdquo;`, event)">Mabulay</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Menchavez', 'Menchavez.html', `&ldquo;Lab coat ready, top of the class completed.&rdquo;`, event)">Menchavez</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Oyao', 'Oyao.html', `&ldquo;From the court to the engineering floor!&rdquo;`, event)">Oyao</button>
+                            <button class="epilogo-name-btn" onclick="loadEpilogo('Tamparong', 'Tamparong.html', `&ldquo;Clear skies ahead—from nursing to pilot cockpit!&rdquo;`, event)">Tamparong</button>
+                        </div>
+                    </div>
+
+                    <!-- Shorter Dark Display Box for Quirky One-Liner -->
+                    <div class="epilogo-display-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 12px;">
+                            <h3 id="epilogoTitle" style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: #d97706; text-transform: uppercase;">
+                                Abecia
+                            </h3>
+                            <a id="epilogoExternalLink" href="Abecia.html" onclick="transitionToPage(event, this.href)" class="epilogo-open-btn">
+                                BUONG PAHINA &rarr;
+                            </a>
+                        </div>
+                        
+                        <div id="epilogoContent" class="epilogo-text-body">
+                            &ldquo;Overcoming hurdles and mastering skills—Senior High School was an irreplaceable journey.&rdquo;
+                        </div>
+                    </div>
+
+                    <!-- Xavier Horizontal Logo Box Below Black Box -->
+                    <div style="width: 100%; height: 160px; border: 3px solid #111111; background: #ffffff; box-shadow: 6px 6px 0px #111111; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 15px;">
+                        <img src="XU2.jpg" alt="Xavier University Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 7. BIONOTE / CV MEMBER GRID -->
+            <div id="bionote-cv" class="section-view">
+                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;">
+                    
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <h2 class="ust-split-title" data-text="MGA MIYEMBRO" style="font-size: 2.2rem;">
+                            MGA MIYEMBRO
+                        </h2>
+                    </div>
+
+                    <div class="members-grid-container">
+                        <div class="member-card-box" onclick="openMemberModal('Abecia')">Abecia</div>
+                        <div class="member-card-box" onclick="openMemberModal('Abejo')">Abejo</div>
+                        <div class="member-card-box" onclick="openMemberModal('Aganan')">Aganan</div>
+                        <div class="member-card-box" onclick="openMemberModal('Andaloc')">Andaloc</div>
+                        <div class="member-card-box" onclick="openMemberModal('Anunciado')">Anunciado</div>
+                        <div class="member-card-box" onclick="openMemberModal('Bioco')">Bioco</div>
+                        <div class="member-card-box" onclick="openMemberModal('De Gracia')">De Gracia</div>
+                        <div class="member-card-box" onclick="openMemberModal('Del Rosario')">Del Rosario</div>
+                        <div class="member-card-box" onclick="openMemberModal('Delligos')">Delligos</div>
+                        <div class="member-card-box" onclick="openMemberModal('Echem')">Echem</div>
+                        <div class="member-card-box" onclick="openMemberModal('Hernandez')">Hernandez</div>
+                        <div class="member-card-box" onclick="openMemberModal('Jumao-as')">Jumao-as</div>
+                        <div class="member-card-box" onclick="openMemberModal('Lumasag')">Lumasag</div>
+                        <div class="member-card-box" onclick="openMemberModal('Mabulay')">Mabulay</div>
+                        <div class="member-card-box" onclick="openMemberModal('Menchavez')">Menchavez</div>
+                        <div class="member-card-box" onclick="openMemberModal('Oyao')">Oyao</div>
+                        <div class="member-card-box" onclick="openMemberModal('Tamparong')">Tamparong</div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MEMBER DETAILS MODAL POPUP -->
+    <div id="memberModal" class="modal-overlay">
+        <div class="modal-info-box">
+            <button class="modal-close-btn" onclick="closeMemberModal()">ISARA &#10005;</button>
+            
+            <div style="display: flex; align-items: center; gap: 24px; border-bottom: 3px solid #111111; padding-bottom: 18px; margin-bottom: 18px; padding-right: 60px;">
+                <div id="modalMemberImgBox" style="width: 120px; height: 120px; border: 3px solid #111111; background: #eee; flex-shrink: 0; overflow: hidden; display: none; box-shadow: 4px 4px 0px #111111;">
+                    <img id="modalMemberImg" src="" alt="Member Photo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div>
+                    <h3 id="modalMemberName" style="font-family: 'Space Grotesk', sans-serif; font-size: 1.9rem; font-weight: 700; text-transform: uppercase; color: #111111; margin: 0; padding: 0;">PANGALAN</h3>
+                </div>
+            </div>
+            
+            <div class="modal-body-content" id="modalBodyText">
+                <!-- Dynamic text content loaded via JS -->
+            </div>
+
+            <div class="modal-tabs-container">
+                <button class="modal-tab-btn active" id="tabBtnBionote" onclick="switchModalTab('bionote')">BIONOTE</button>
+                <button class="modal-tab-btn" id="tabBtnCV" onclick="switchModalTab('cv')">CURRICULUM VITAE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function switchSection(evt, sectionId) {
+            if (evt) evt.preventDefault();
+            
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => link.classList.remove('active'));
+            
+            const targetLink = document.querySelector(`.nav-link[onclick*="${sectionId}"]`);
+            if (targetLink) targetLink.classList.add('active');
+            
+            const views = document.querySelectorAll('.section-view');
+            views.forEach(view => view.classList.remove('active'));
+            
+            const targetView = document.getElementById(sectionId);
+            if (targetView) targetView.classList.add('active');
+        }
+
+        /* Auto-switch to section based on URL hash when returning to portfolio */
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                switchSection(null, hash);
+            }
+        });
+
+        function transitionToPage(event, url) {
+            event.preventDefault();
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 300);
+        }
+
+        function loadEpilogo(name, linkUrl, previewText, evt) {
+            const buttons = document.querySelectorAll('.epilogo-name-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            }
+
+            document.getElementById('epilogoTitle').innerText = name;
+            document.getElementById('epilogoContent').innerHTML = previewText;
+            
+            const linkBtn = document.getElementById('epilogoExternalLink');
+            linkBtn.href = linkUrl;
+            linkBtn.setAttribute('onclick', `transitionToPage(event, '${linkUrl}')`);
+        }
+
+        let currentMember = '';
+
+        /* Member Database */
+        const memberData = {
+            'Abecia': {
+                image: 'Abecia.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Steve Vanne MJ D. Abecia</strong> ay isang mag-aaral sa Baitang 12 sa ilalim ng Science, Technology, Engineering, and Mathematics (STEM) Strand sa Xavier University - Ateneo de Cagayan Senior High School. Nagtapos siya ng Junior High School sa St. Mary's Academy of Carmen nang may karangalan (With Honors) mula Baitang 7 hanggang Baitang 10, kung saan naging kampeon din siya sa mga paligsahan sa debate sa kanilang paaralan.</p>
+
+                    <p style="margin-bottom: 12px;">Bukod sa akademya, matindi ang kaniyang hilig sa palakasan at sa pagpapanatili ng malusog na pangangatawan. Siya ay isang aktibong atleta na mahilig sa badminton, jogging, cycling, gym, at iba pang racket sports. Nagsilbi siyang miyembro ng varsity team ng badminton sa kaniyang dating paaralan at kasalukuyang bahagi ng Badminton Trainee Reserved Varsity (TRV) ng Xavier University. Sa kaniyang libreng oras, kinahihiligan din niya ang paglalaro ng video games, pakikinig sa musika, paggala kasama ang mga kaibigan, at patuloy na pagtuklas ng mga bagong kaalaman.</p>
+
+                    <p>Si Steve ay kilala bilang isang taong bukas sa mga bagong karanasan at patuloy na naghahangad ng personal na pag-unlad. Layunin niyang makapagtapos sa Senior High School at kumuha ng kursong Civil Engineering sa kolehiyo upang makapag-ambag sa larangan ng impraspraktura at konstruksiyon sa hinaharap.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Steve Vanne MJ D. Abecia<br>
+                        <strong>Nasyonalidad:</strong> Filipino &nbsp;|&nbsp; <strong>Edad:</strong> 17 &nbsp;|&nbsp; <strong>Petsa ng Kapanganakan:</strong> Setyembre 28, 2009 &nbsp;|&nbsp; <strong>Lugar ng Kapanganakan:</strong> Cagayan de Oro
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Sekondarya (Senior High School):</strong> Xavier University - Ateneo de Cagayan Senior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2025 – Kasalukuyan)</li>
+                        <li><strong>Sekondarya (Junior High School):</strong> San Andres Academy of Maramag Inc. Maramag, Bukidnon (2021 - 2025)</li>
+                        <li><strong>Elementarya:</strong> San Andres Academy of Maramag Inc. Maramag, Bukidnon (2015 - 2021)</li>
+                    </ul>
+                `
+            },
+            'Abejo': {
+                image: 'Abejo.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Yesu Benyosef M. Abejo</strong> ay isang mag-aaral sa Baitang 12 na kasalukuyang nag-aaral sa Xavier University - Ateneo de Cagayan Senior High School. Interesado siya sa maraming larangan ng agham, kabilang ang zoolohiya at arkeolohiya, gayundin sa kasaysayan at iba't ibang larangan ng libangan tulad ng musika, sine, at sining. Gayunpaman, ang mga video game, partikular na sa mga genre tulad ng sandbox at fighting games, ang kaniyang pangunahing interes at libangan.</p>
+                    
+                    <p style="margin-bottom: 12px;">Mayroon siyang karanasan sa malikhaing pagpapahayag gamit ang teknolohiya, partikular sa pag-e-edit ng video, programming gamit ang Arduino, at virtual na disenyo. Ginagamit niya ang mga malikhaing plataporma tulad ng Minecraft upang tuklasin ang digital na sining sa pamamagitan ng konstruksiyon at arkitektura, habang bumubuo ng mga komplikadong sistemang pang-inhinyeriya sa loob ng laro. Lumahok din si Abejo sa Tulong-Dunong Program ng paaralan, kung saan nagturo siya ng matematika sa mga mag-aaral sa elementarya sa loob ng halos anim na buwan.</p>
+                    
+                    <p>Isa sa kaniyang mga kapansin-pansing tagumpay ang pagiging palagiang honor student sa malaking bahagi ng kaniyang karera sa pag-aaral hanggang sa mga huling taon ng high school. Nais niyang maging isang mahusay na game programmer at manlalaro ng fighting games upang lumikha ng mga larong nagbibigay ng saya at libangan sa mga tao sa buong mundo.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Yesu Benyosef M. Abejo<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School<br>
+                        <strong>Nasyonalidad:</strong> Filipino &nbsp;|&nbsp; <strong>Edad:</strong> 16 &nbsp;|&nbsp; <strong>Petsa ng Kapanganakan:</strong> Setyembre 12, 2009 &nbsp;|&nbsp; <strong>Lugar ng Kapanganakan:</strong> Cagayan de Oro City
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University – Ateneo de Cagayan Senior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2025–Kasalukuyan)</li>
+                        <li><strong>Junior High School:</strong> Xavier University – Ateneo de Cagayan Junior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2021–2025)</li>
+                    </ul>
+                `
+            },
+            'Aganan': {
+                image: 'Aganan.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;"><strong>Kurt Gravince D. Aganan</strong> ay isang mag-aaral mula sa Seksyon 12-Cetti. Isa siyang estudyanteng nagsisikap na maging responsable at maayos sa kanyang pag-aaral. Sinisikap niyang tapusin ang kanyang mga gawain sa oras at ibigay ang kanyang pinakamahusay na effort sa bawat gawain. Para kay Kurt, mahalaga ang pag-aaral dahil nakatutulong ito upang madagdagan ang kanyang kaalaman at maging handa siya sa kanyang mga pangarap sa hinaharap.</p>
+                    
+                    <p style="margin-bottom: 12px;">Sa kanyang buhay bilang estudyante, natututo siya hindi lamang mula sa mga aralin kundi pati na rin sa kanyang mga karanasan. Mahilig siyang matuto ng mga bagong bagay at subukan ang mga gawain na makatutulong sa kanyang kakayahan. Naniniwala siya na ang pagkakamali ay bahagi ng pagkatuto kaya patuloy niyang pinagbubuti ang kanyang sarili. Mahalaga rin sa kanya ang pakikipagtulungan at magandang pakikitungo sa kanyang mga kaklase, guro, kaibigan, at pamilya.</p>
+                    
+                    <p>Bilang isang kabataan, nais ni Kurt na magkaroon ng magandang kinabukasan at maabot ang kanyang mga personal na pangarap. Alam niyang kailangan ng sipag, tiyaga, at tamang pag-uugali upang makamit ang mga ito. Kaya patuloy siyang nagsisikap sa kanyang pag-aaral at sa mga bagay na mahalaga sa kanya. Sa mga susunod na taon, umaasa siyang magagamit niya ang mga natutunan niya upang maging mas mahusay na tao at magkaroon ng magandang ambag sa kanyang pamilya at komunidad.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Kurt Gravince D. Aganan<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti | Xavier University Senior High School<br>
+                        <strong>Nasyonalidad:</strong> Filipino &nbsp;|&nbsp; <strong>Edad:</strong> 17 &nbsp;|&nbsp; <strong>Lugar ng Kapanganakan:</strong> Cagayan de Oro City
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University – Ateneo de Cagayan Senior High School, Pueblo de Oro Campus, Cagayan de Oro City (2025–Kasalukuyan)</li>
+                        <li><strong>Junior High School:</strong> Xavier University – Ateneo de Cagayan Junior High School, Pueblo de Oro Campus, Cagayan de Oro City (2022–2025)</li>
+                        <li><strong>Elementarya:</strong> Corpus Christi School (2017–2022)</li>
+                    </ul>
+                `
+            },
+            'Andaloc': {
+                image: 'Andaloc.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Jason Floyd Andaloc</strong> ay isang mag-aaral sa Xavier University Senior High School – Ateneo de Cagayan. Siya ay kasalukuyang nasa Grade 12 at patuloy na nagsisikap na mapabuti ang kanyang kaalaman at kakayahan sa iba’t ibang asignatura. Kilala siya bilang isang responsable at masipag na estudyante. Siya rin ay miyembro ng isang organisasyon sa paaralan at nagsisilbing opisyal sa Constitutional Court, kung saan naipapakita niya ang kanyang kakayahan sa pamumuno at pakikipagtulungan.</p>
+                    
+                    <p style="margin-bottom: 12px;">Sa kanyang mga karanasan sa paaralan, natutunan niyang pahalagahan ang oras, disiplina, at pakikipagtulungan sa kapwa. Aktibo rin siyang nakikilahok sa mga gawaing may kaugnayan sa pananaliksik at iba pang proyekto na nakatutulong sa kanyang pagkatuto at sa komunidad ng paaralan. Naniniwala siya na ang edukasyon ay mahalagang susi sa pag-abot ng mga pangarap.</p>
+                    
+                    <p>Sa hinaharap, layunin ni Jason na makapagpatuloy sa pag-aaral at kumuha ng kursong makakatulong sa kanya na makapag-ambag sa lipunan. Nais niyang gamitin ang kanyang kaalaman upang makabuo ng mga proyektong may positibong epekto sa ibang tao.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Jason Floyd Andaloc<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti | Xavier University Senior High School
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University – Ateneo de Cagayan Senior High School (2025 – Kasalukuyan)</li>
+                    </ul>
+                `
+            },
+            'Anunciado': {
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Reign Ryo Anunciado</strong> ay isang Grade 12 STEM student na patuloy na nagsisikap upang maabot ang kaniyang mga layunin. Isa sa kaniyang mga nakamit ay ang pagtatapos ng Junior High School sa Misamis Oriental General Comprehensive High School na may karangalan, kung saan naging Secretary ng klase siya sa lahat ng taon.</p>
+                    
+                    <p style="margin-bottom: 12px;">Kumuha siya ng Technical Drafting sa loob ng dalawang taon, kung saan nahasa ang kaniyang kasanayan sa pagguhit at pagdidisenyo—ito ang naging pundasyon para sa kaniyang pangarap na maging Arkitekto. Bukod sa pag-aaral, interesado rin siya sa pagbili at pagbebenta ng mga item online, kung saan natutunan niya ang halaga ng pagsisikap, tamang pamamahala, at pagiging masinop.</p>
+                    
+                    <p>Sa kasalukuyan, patuloy niyang hinaharap ang mga hamon sa pag-aaral at nagsisikap na mapaunlad ang kaniyang sarili. Ang kaniyang pangunahing layunin ay makapagtapos nang may kahusayan, maging isang matagumpay na Arkitekto, at magamit ang lahat ng kaniyang mga natutunan upang unti-unting makamit ang kaniyang mga pangarap.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Reign Ryo Anunciado<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University – Ateneo de Cagayan Senior High School (2025 – Kasalukuyan)</li>
+                        <li><strong>Junior High School:</strong> Misamis Oriental General Comprehensive High School</li>
+                    </ul>
+                `
+            },
+            'Bioco': {
+                image: 'Bioco.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Roderick A. Bioco</strong> ay isang mag-aaral sa Senior High School na kasalukuyang kumukuha ng STEM strand sa Xavier University Senior High School. Ipinagpapatuloy niya ang kanyang pag-aaral habang aktibong nakikilahok sa mga gawaing pampaaralan at organisasyon.</p>
+                    
+                    <p style="margin-bottom: 12px;">Mula Grade 11 hanggang sa kasalukuyang Grade 12, naging miyembro siya ng Esports Club, kung saan nagsisilbi siyang aktibong miyembro at facilitator sa mga laro at gawain ng organisasyon. Lumahok din siya sa Navigate Leadership Workshop at nakatanggap ng Certificate of Participation.</p>
+                    
+                    <p>Sa pamamagitan ng mga karanasang ito, nahuhubog ang kanyang kasanayan sa pamumuno, pakikipagtulungan, pakikipagkomunikasyon, at pag-oorganisa ng mga gawain.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Roderick A. Bioco<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School<br>
+                        <strong>Nasyonalidad:</strong> Filipino &nbsp;|&nbsp; <strong>Edad:</strong> 18 &nbsp;|&nbsp; <strong>Petsa ng Kapanganakan:</strong> Agosto 8, 2008 &nbsp;|&nbsp; <strong>Lugar ng Kapanganakan:</strong> Cagayan de Oro City
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University – Ateneo de Cagayan Senior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2025–Kasalukuyan)</li>
+                        <li><strong>Junior High School:</strong> Xavier University – Ateneo de Cagayan Junior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2021–2025)</li>
+                        <li><strong>Elementarya:</strong>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>Xavier University – Ateneo de Cagayan Grade School, Macasandig Campus, 14th St. (2018–2021)</li>
+                                <li>Xavier University – Ateneo de Cagayan Junior High School, Pueblo de Oro Campus (2017–2018)</li>
+                                <li>Marywoods Academy, Marywoods Access Road, Diversion Rd, Malaybalay City, Bukidnon (2015–2017)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                `
+            },
+            'De Gracia': {
+                image: 'DeGracia.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Blessie Kyla Pactol De Gracia</strong> ay isang Grade 12 STEM student ng Xavier University Senior High School. Kinahihiligan niya ang Biology, Mathematics, at Psychology dahil interesado siya sa mga konsepto ng mga ito at kung paano nauugnay ang mga ito sa tunay na buhay. Bilang isang mag-aaral, patuloy niyang pinahahalagahan ang akademya at nagsisikap na mapanatili ang mahusay na pagganap sa paaralan.</p>
+                    
+                    <p style="margin-bottom: 12px;">Mula pa noong elementarya, aktibo na siya sa mga gawaing pangkomunidad, pamumuno, at paglilingkod. Noong JHS, nagsilbi siya bilang Class Representative (Grade 8 at 9) at Vice President ng Student Government noong Grade 10. Naging bahagi rin siya ng Light Cavalry Leadership Community (LCLC). Sa SHS, naging Class President siya ng Grade 11 Fenyi, Deputy Cluster Head ng Cluster Fortem noong Dilaab, at Project Head sa iba't ibang kaganapan sa paaralan. Sa kasalukuyan, nagsisilbi siya bilang Secretary General ng Senior High Association of Student Organizations (SHASO) at bahagi ng Student Government na nangangasiwa sa 18 organisasyon. Aktibo rin siya sa pagsasayaw, pag-e-emcee, at sa Tulong Dunong Program.</p>
+                    
+                    <p>Sa hinaharap, pinapangarap niyang maging doktor upang makatulong sa paggamot sa iba at makapagbigay ng pag-asa sa mga taong nangangailangan. Naniniwala siya na sa anumang bagay na kaniyang ginagawa, mahalagang ibuhos ang kaniyang buong puso at gawin ito nang may pagmamahal.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Blessie Kyla Pactol De Gracia<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School<br>
+                        <strong>Nasyonalidad:</strong> Filipino &nbsp;|&nbsp; <strong>Edad:</strong> 17 &nbsp;|&nbsp; <strong>Petsa ng Kapanganakan:</strong> Abril 14, 2009 &nbsp;|&nbsp; <strong>Lugar ng Kapanganakan:</strong> Don Carlos, Bukidnon
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University – Ateneo de Cagayan Senior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2025–Kasalukuyan)</li>
+                        <li><strong>Junior High School:</strong> Xavier University – Ateneo de Cagayan Junior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2021–2025)</li>
+                        <li><strong>Elementarya:</strong> Xavier University – Ateneo de Cagayan Grade School, Macasandig Campus, Cagayan de Oro City (2017–2021)</li>
+                    </ul>
+                `
+            },
+            'Del Rosario': {
+                image: 'DelRosario.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Nephi Cianne L. Del Rosario</strong> ay isang mag-aaral ng Grade 12 STEM-CETTI sa Xavier University – Ateneo de Cagayan. Kasalukuyan siyang nagsisilbi bilang Vice President ng kaniyang klase at miyembro ng Department of Events Management, kung saan kabilang siya sa Creatives Committee. Kinikilala niya ang graphic design bilang isa sa kaniyang pangunahing larangan at interes, lalo na sa paggawa ng pubmats, stage designs, at iba pang malikhaing materyales para sa mga school events.</p>
+                    
+                    <p style="margin-bottom: 12px;">Bago ang kaniyang kasalukuyang posisyon, nagsilbi rin siya bilang Public Information Officer (PIO) at Peace Officer noong Grade 10. Naging Project Head din siya para sa isang event na bahagi ng kaniyang Graduation Ball. Sa pamamagitan ng kaniyang organisasyon, naging bahagi siya ng iba’t ibang school events kung saan siya ay gumagawa ng pubmats, nagdidisenyo ng stage, at tumutulong sa pagsasakatuparan ng mga malikhaing konsepto.</p>
+                    
+                    <p>Sa akademikong larangan, nakatanggap siya ng With Honors mula Grade 7 hanggang Grade 8, With High Honors noong Grade 9, at With Honors noong Grade 10. Naging kinatawan din siya ng kaniyang paaralan sa isang Mathematics Quiz Bee.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Nephi Cianne L. Del Rosario<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University – Ateneo de Cagayan Senior High School (2025 – Kasalukuyan)</li>
+                    </ul>
+                `
+            },
+            'Delligos': {
+                image: 'Delligos.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Krishna Jillana L. Delligos</strong> ay isang mag-aaral ng Grade 12 STEM sa Xavier University Senior High School sa Cagayan de Oro City. Noong Junior High School, siya ay isang consistent honor student na nagsikap na mapanatili ang magandang pagganap sa akademiko. Bukod sa pag-aaral, aktibo rin siya sa mga organisasyong tumutulong sa pag-oorganisa at pagsasagawa ng iba’t ibang programa at gawain sa paaralan.</p>
+                    
+                    <p style="margin-bottom: 12px;">Sa Senior High School, patuloy niyang nahahasa ang kaniyang kakayahan sa pamumuno at pagiging responsable. Naging class treasurer siya noong Grade 11 at kasalukuyang class secretary ngayong Grade 12. Sa pamamagitan ng mga karanasang ito, napaunlad niya ang kaniyang kasanayan sa pamamahala, pakikipagtulungan, komunikasyon, at pag-oorganisa. Aktibo rin siyang nakikilahok sa mga gawaing tumutulong upang maging maayos at matagumpay ang mga school events.</p>
+                    
+                    <p>Bilang isang STEM student, interesado rin si Krishna sa pananaliksik, agham, at teknolohiya. Patuloy niyang pinauunlad ang kaniyang kaalaman at kakayahan upang maging handa sa kaniyang pag-aaral sa kolehiyo at sa kaniyang magiging propesyon. Layunin niyang magamit ang kaniyang mga natutuhan, karanasan, at kasanayan sa pamumuno upang makapagbigay ng positibong ambag sa kaniyang komunidad.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Krishna Jillana L. Delligos<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School<br>
+                        <strong>Nasyonalidad:</strong> Filipino &nbsp;|&nbsp; <strong>Edad:</strong> 17 &nbsp;|&nbsp; <strong>Petsa ng Kapanganakan:</strong> Disyembre 06, 2008 &nbsp;|&nbsp; <strong>Lugar ng Kapanganakan:</strong> Gingoog City
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University – Ateneo de Cagayan Senior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2025–Kasalukuyan)</li>
+                        <li><strong>Junior High School:</strong> Christ the King College, J.Z. Mercado Avenue, Gingoog City, Misamis Oriental (2021–2025)</li>
+                        <li><strong>Elementarya:</strong> Christ the King College, J.Z. Mercado Avenue, Gingoog City, Misamis Oriental (2013–2021)</li>
+                    </ul>
+                `
+            },
+            'Echem': {
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Xander Crae P. Echem</strong> ay isang mag-aaral ng STEM sa ika-12 baitang mula sa Xavier University Senior High School. Mahilig siya sa pagtugtog ng saxophone at nakapagtanghal na sa iba't ibang kaganapan sa buong panahon ng kaniyang panunungkulan bilang miyembro ng bandang Press Play. Kabilang sa iba pa niyang mga libangan ang pagbubuhat ng mga pabigat, pagboboksing, pag-aalaga ng mga kakaibang isda, at paglalaro ng mga tabletop roleplaying game.</p>
+                    
+                    <p style="margin-bottom: 12px;">Pagkatapos niyang magtapos ng elementarya sa Xavier University Grade School (XUGS), nag-aral siya sa Xavier University Junior High School (XUJHS) kung saan niya tinapos ang kaniyang junior high school. Natanggap niya ang Outstanding Club Member Award sa Magis Awards ceremony noong ika-4 na baitang sa XUGS, pati na rin ang Outstanding Club Officer at Bl. Richard Michael Fernando awards sa Magis Awards ceremony noong ika-10 baitang sa XUJHS.</p>
+                    
+                    <p>Noong ika-11 baitang sa Xavier University Senior High School, siya, kasama ang Press Play, ay nagwagi ng unang pwesto sa Battle of The Bands noong DILAAB intramurals event. Matapos kumuha ng midterm exams noong ika-12 baitang, nagkaroon din siya ng interes sa historical naval warfare at sa mga barkong Mogador-class Destroyer.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Xander Crae P. Echem<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University Senior High School (2025 – Kasalukuyan)</li>
+                        <li><strong>Junior High School:</strong> Xavier University Junior High School (XUJHS)</li>
+                        <li><strong>Elementarya:</strong> Xavier University Grade School (XUGS)</li>
+                    </ul>
+                `
+            },
+            'Jumao-as': {
+                image: 'Jumao-as.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Carl Lyle Buenaflor Jumao-as</strong> ay isang labing-pitong taong gulang na mag-aaral sa Grade 12 STEM strand sa Ateneo de Cagayan – Xavier University. Ipinanganak siya sa Cagayan de Oro City ngunit noong panahon ng COVID-19 pandemic, lumipat ang kaniyang pamilya at nagdesisyong manirahan sa kaniyang bukid sa Bukidnon. Doon niya naranasan ang tahimik at malamig na kapaligiran na malayo sa ingay ng lungsod, na nakatulong sa kaniya na mas pahalagahan ang kalikasan, simpleng pamumuhay, at oras kasama ang pamilya.</p>
+                    
+                    <p style="margin-bottom: 12px;">Mahilig siya sa graphic design, pagguhit, at pag-e-edit na nagsisilbing paraan niya upang maipakita ang kaniyang pagiging malikhain. Mahilig din siya sa mga aso at sa kasalukuyan ay mayroon siyang labing-isang alagang aso na itinuturing niyang mahalagang bahagi ng kaniyang buhay. Bukod dito, interesado rin siya sa teknolohiya at iba’t ibang paraan ng paglikha ng digital content.</p>
+                    
+                    <p>Sa kaniyang pag-aaral, nakatanggap siya ng participation award bilang beadle at parangal sa costume contest. Sa hinaharap, nais niyang maging isang IT professional at gawing side hobby ang content creation upang makalikha ng mga bagay na makabuluhan at kapaki-pakinabang.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Carl Lyle Buenaflor Jumao-as<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School<br>
+                        <strong>Nasyonalidad:</strong> Filipino &nbsp;|&nbsp; <strong>Edad:</strong> 17 &nbsp;|&nbsp; <strong>Petsa ng Kapanganakan:</strong> Pebrero 06, 2009 &nbsp;|&nbsp; <strong>Lugar ng Kapanganakan:</strong> Cagayan de Oro City
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University – Ateneo de Cagayan Senior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2025–Kasalukuyan)</li>
+                        <li><strong>Junior High School:</strong> Tikala-an National High School, Tikalaan, Talakag, Bukidnon (2021–2025)</li>
+                        <li><strong>Elementarya:</strong> HAPPY Land International School, Brgy. Balaos, Iponan, Cagayan de Oro City (2015–2021)</li>
+                    </ul>
+                `
+            },
+            'Mabulay': {
+                image: 'Mabulay.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Simone Breana A. Mabulay</strong> ay isang 17-anyos na mag-aaral ng Grade 12 sa Xavier University Senior High School (XUSHS). Ipinanganak siya noong Pebrero 8, 2009. Nagsimula siyang mag-aral sa Xavier University noong ikalawang taon ng high school at matagumpay na nagtapos sa Xavier University Junior High School (XUJHS). Bago ito, nag-aral siya sa Merry Child School mula elementarya hanggang sa kaniyang unang taon sa high school.</p>
+                    
+                    <p style="margin-bottom: 12px;">Sa kaniyang mga taon sa junior high school, naging aktibo siya bilang miyembro ng theatre, kung saan tumulong siya sa pagbuo ng mga set at pagsulat ng mga iskrip para sa mga pagtatanghal. Sa senior high school naman, naging aktibong miyembro siya ng Department of Student Affairs (DSA), isang organisasyong nakaugnay sa Student Government, at kasalukuyang nagsisilbi bilang External General Secretary. Bilang bahagi ng kaniyang tungkulin, nakikipag-ugnayan siya sa mga negosyo at organisasyon sa labas ng paaralan upang mag-imbita na magbenta ng kaniyang mga produkto o serbisyo sa loob ng paaralan. Sa pamamagitan nito, nahasa ang kaniyang kakayahan sa pakikipagkomunikasyon, pakikipagtulungan, pagpaplano, at pakikipag-ugnayan sa iba’t ibang tao.</p>
+                    
+                    <p>Kilala siya bilang isang matulungin na indibidwal. Patuloy niyang pinauunlad ang kaniyang sarili, kaalaman, at mga kakayahan upang maging handa sa kaniyang pag-aaral sa kolehiyo at sa mga nais pang linangin sa hinaharap.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Simone Breana A. Mabulay<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School<br>
+                        <strong>Nasyonalidad:</strong> Filipino &nbsp;|&nbsp; <strong>Edad:</strong> 17 &nbsp;|&nbsp; <strong>Petsa ng Kapanganakan:</strong> Pebrero 8, 2009 &nbsp;|&nbsp; <strong>Lugar ng Kapanganakan:</strong> Cagayan de Oro City
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Sekondarya (Senior High School):</strong> Xavier University – Ateneo de Cagayan Senior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2025–Kasalukuyan)</li>
+                        <li><strong>Sekondarya (Junior High School):</strong> Xavier University – Ateneo de Cagayan Junior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2022–2025)</li>
+                        <li><strong>Elementarya:</strong> Merry Child School, Zone 7, Bangkerohan Bulua, Cagayan de Oro City (2015–2022)</li>
+                    </ul>
+                `
+            },
+            'Menchavez': {
+                image: 'Menchavez.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Ashlee Blaze P. Menchavez</strong> ay isang Grade 12 na mag-aaral sa Xavier University Senior High School (XUSHS) sa ilalim ng Science, Technology, Engineering, and Mathematics (STEM) strand. Napanatili niya ang kaniyang katayuan bilang isang honor student sa buong panahon ng kaniyang pag-aaral sa high school. Bukod dito, siya ang nanguna (Top 1) sa kaniyang batch sa Kong Hua School noong kaniyang pagtatapos sa Grade 10, kung saan nakamit niya ang sampung espesyal at akademikong parangal kabilang ang "With Highest Honors."</p>
+                    
+                    <p style="margin-bottom: 12px;">Sa kasalukuyan, siya ay nagsisilbi bilang Associate Creatives Head sa Department of Education and Formation ng XUSHS. Marami siyang kinahihiligang gawin tulad ng pagbabasa at pagsusulat, ngunit ang pinaka-pinahahalagahan niya ay ang pagtuklas ng mga bagong inobasyon upang makatulong sa ibang tao.</p>
+                    
+                    <p>Plano ni Ashlee na kumuha ng kursong Biotechnology sa kolehiyo upang makapagtrabaho sa larangan ng laboratoryo at medical research. Maaaring makipag-ugnayan sa kaniya sa pamamagitan ng kaniyang e-mail address na <strong>menchavezab@gmail.com</strong> o sa kaniyang numero na <strong>09627986515</strong>.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Ashlee Blaze P. Menchavez<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School<br>
+                        <strong>Nasyonalidad:</strong> Filipino &nbsp;|&nbsp; <strong>Edad:</strong> 17 &nbsp;|&nbsp; <strong>Petsa ng Kapanganakan:</strong> February 11, 2009 &nbsp;|&nbsp; <strong>Lugar ng Kapanganakan:</strong> Opol, Misamis Oriental
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Sekondarya (Senior High School):</strong> Xavier University – Ateneo de Cagayan Senior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2025–Kasalukuyan)</li>
+                        <li><strong>Sekondarya (Junior High School):</strong>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>Kong Hua School, Rodolfo N. Pelaez Blvd, Barangay Kauswagan, Cagayan De Oro City (2023–2025)</li>
+                                <li>Philippine International School – Qatar, P.O. Box 9875, Ain Khalid, Doha, Qatar (2021–2023)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Elementarya:</strong> Philippine International School – Qatar, P.O. Box 9875, Ain Khalid, Doha, Qatar (2013–2021)</li>
+                    </ul>
+                `
+            },
+            'Oyao': {
+                image: 'Oyao.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Robert S. Oyao Jr.</strong> ay isang mag-aaral mula sa Tagoloan, Misamis Oriental. Noong siya ay nasa Junior High School, kinilala siya bilang isang mahusay na mag-aaral sa akademya, atleta, at lider-estudyante.</p>
+
+                    <p style="margin-bottom: 12px;">Pinagsabay niya ang kaniyang mga responsibilities bilang isang honor student, miyembro ng varsity team ng paaralan, at Student Government (SG) Senator. Sa kasalukuyan, siya ay isang Grade 12 student sa Xavier University - Ateneo de Cagayan Senior High School bilang isang scholar.</p>
+
+                    <p>Plano niyang makapagtapos sa Senior High School at kumuha ng kursong Engineering sa kolehiyo upang ipagpatuloy ang kaniyang adbokasiya at mga pangarap.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Robert S. Oyao Jr.<br>
+                        <strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School<br>
+                        <strong>Tirahan:</strong> Tagoloan, Misamis Oriental
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Senior High School:</strong> Xavier University – Ateneo de Cagayan Senior High School (2025 – Kasalukuyan)</li>
+                        <li><strong>Junior High School:</strong> Junior High School Student</li>
+                    </ul>
+                `
+            },
+            'Tamparong': {
+                image: 'Tamparong.jpg',
+                bionote: `
+                    <p style="margin-bottom: 12px;">Si <strong>Khrissa Stefon A. Tamparong</strong> ay isang 17-taong-gulang na kasalukuyang nag-aaral sa Xavier University Senior High School - Ateneo De Cagayan bilang isang mag-aaral sa Baitang 12 sa ilalim ng STEM Strand. Interesado siya sa mga larangan ng agham at matematika at aktibong nakikilahok sa mga gawaing pang-akademiko at pampaaralan. Layunin niyang patuloy na malinang ang kaniyang kaalaman at kakayahan upang makamit ang kaniyang mga pangarap sa hinaharap.</p>
+
+                    <p style="margin-bottom: 12px;">Nagtapos siya ng elementarya sa Xavier University Grade School bilang Third Honors. Noong siya ay nasa junior high school, nakatanggap siya ng iba’t ibang pagkilala, kabilang ang pagiging Third Placer noong Baitang 8 sa isang essay writing contest at First Placer sa Empower Ed: Ateneans Enhancing Government Programs noong School Maker Faire sa Baitang 9. Naging consistent Second Honors din siya mula Baitang 7 hanggang Baitang 10. Pagdating niya sa senior high school, nakamit niya ang Overall Third Honors noong unang at ikalawang semestre. Kabilang sa kaniyang mga kasanayan ang pananaliksik at pagsulat, at mahilig siyang gumuhit tuwing kaniyang libreng oras. Interesado rin siyang matuto ng mga bagong wika, partikular ang Espanyol na nais niyang matutuhan hanggang sa maging mahusay at bihasa siya rito. Lumahok din siya sa iba’t ibang organisasyon gaya ng Squire Publication noong Baitang 11 at kasalukuyan siyang nasa Atomic Circle.</p>
+
+                    <p>Sa kasalukuyan, nakatuon siya sa pagpapatuloy ng kaniyang pag-aaral at matagumpay na pagtatapos ng senior high school. Balak niyang kunin ang Bachelor of Science in Nursing (BS Nursing) sa kolehiyo. Sa hinaharap, nais niyang ipagpatuloy ang kaniyang pangarap na maging piloto sa pamamagitan ng pag-aaral sa isang flying school o kaya naman ay ipagpatuloy ang kaniyang pag-aaral sa medical school upang maging isang doktor.</p>
+                `,
+                cv: `
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                        <strong>Pangalan:</strong> Khrissa Stefon A. Tamparong<br>
+                        <strong>Nasyonalidad:</strong> Filipino &nbsp;|&nbsp; <strong>Edad:</strong> 17 &nbsp;|&nbsp; <strong>Petsa ng Kapanganakan:</strong> March 04, 2009 &nbsp;|&nbsp; <strong>Lugar ng Kapanganakan:</strong> Ozamiz City, Misamis Occidental
+                    </p>
+
+                    <h4>Edukasyon / Educational Background</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Sekondarya (Senior High School):</strong> Xavier University - Ateneo de Cagayan Senior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2025 - Kasalukuyan)</li>
+                        <li><strong>Sekondarya (Junior High School):</strong> Xavier University - Ateneo de Cagayan Junior High School, Pueblo de Oro Campus, El Camino St. and Masterson Avenue, Cagayan de Oro City (2021 - 2025)</li>
+                        <li><strong>Elementarya:</strong> Xavier University - Ateneo de Cagayan Grade School, Pueblo de Oro Campus, Cagayan de Oro City (2016 - 2021)</li>
+                    </ul>
+                `
+            },
+            'Hernandez': {
+                bionote: 'Si Hernandez ay isang dedikadong mag-aaral mula sa Senior High School ng Xavier University.',
+                cv: '<p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;"><strong>Pangalan:</strong> Hernandez<br><strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School</p><h4>Edukasyon / Educational Background</h4><ul style="margin-left: 20px; margin-bottom: 15px;"><li><strong>Senior High School:</strong> Xavier University Senior High School (2025 – Kasalukuyan)</li></ul>'
+            },
+            'Lumasag': {
+                bionote: 'Si Lumasag ay isang masikap na mag-aaral mula sa Senior High School ng Xavier University.',
+                cv: '<p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;"><strong>Pangalan:</strong> Lumasag<br><strong>Baitang at Seksyon:</strong> Grade 12 - Fr. Francesco Cetti (STEM) | Xavier University Senior High School</p><h4>Edukasyon / Educational Background</h4><ul style="margin-left: 20px; margin-bottom: 15px;"><li><strong>Senior High School:</strong> Xavier University Senior High School (2025 – Kasalukuyan)</li></ul>'
+            }
+        };
+
+        function openMemberModal(memberName) {
+            currentMember = memberName;
+            document.getElementById('modalMemberName').innerText = memberName;
+            
+            const info = memberData[memberName];
+            const imgBox = document.getElementById('modalMemberImgBox');
+            const imgTag = document.getElementById('modalMemberImg');
+
+            if (info && info.image) {
+                imgTag.src = info.image;
+                imgBox.style.display = 'block';
+            } else {
+                imgBox.style.display = 'none';
+            }
+
+            switchModalTab('bionote');
+            document.getElementById('memberModal').classList.add('active');
+        }
+
+        function closeMemberModal() {
+            document.getElementById('memberModal').classList.remove('active');
+        }
+
+        function switchModalTab(tabType) {
+            const btnBionote = document.getElementById('tabBtnBionote');
+            const btnCV = document.getElementById('tabBtnCV');
+            const bodyContent = document.getElementById('modalBodyText');
+
+            const info = memberData[currentMember] || {
+                bionote: 'Wala pang nailagay na Bionote.',
+                cv: 'Wala pang nailagay na Curriculum Vitae.'
+            };
+
+            if (tabType === 'bionote') {
+                btnBionote.classList.add('active');
+                btnCV.classList.remove('active');
+                bodyContent.innerHTML = info.bionote;
+            } else {
+                btnCV.classList.add('active');
+                btnBionote.classList.remove('active');
+                bodyContent.innerHTML = info.cv;
+            }
+        }
+    </script>
+
+</body>
+</html>

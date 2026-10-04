@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scaffold 1 - Pagsusuri ng Teksto</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #111111;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            overflow: hidden;
+            animation: fadeInPage 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        body.fade-out {
+            animation: fadeOutPage 0.3s ease-in forwards;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOutPage {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+        
+        .page-wrapper {
+            width: 100%;
+            max-width: 1400px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-actions {
+            margin-bottom: 25px;
+        }
+
+        .back-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            color: #111111;
+            font-size: 1rem;
+            text-transform: uppercase;
+            display: inline-block;
+            border: 3px solid #111111;
+            padding: 10px 20px;
+            background: #ffffff;
+            box-shadow: 4px 4px 0px #111111;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, color 0.2s;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .back-btn:hover { 
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #111111;
+            background: #111111; 
+            color: #ffffff; 
+        }
+
+        .back-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #111111;
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* Two-Column Grid for the Main Boxes */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
+            min-height: 0;
+        }
+        
+        /* MAIN BOX */
+        .main-box {
+            border: 3px solid #111111;
+            background: #ffffff;
+            box-shadow: 8px 8px 0px #111111;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        /* TOP BOX (Question) */
+        .top-box {
+            background: #111111;
+            color: #ffffff;
+            padding: 30px;
+            border-bottom: 3px solid #111111;
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+        }
+
+        .top-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        /* BOTTOM BOX (Answer - Scrollable) */
+        .bottom-box {
+            padding: 30px 40px;
+            overflow-y: auto;
+            flex: 1;
+            background: #ffffff;
+        }
+
+        .bottom-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #222222;
+            margin-bottom: 20px;
+            text-align: justify;
+            text-indent: 30px;
+        }
+
+        /* Custom Scrollbar for brutalist aesthetic */
+        .bottom-box::-webkit-scrollbar {
+            width: 10px;
+        }
+        .bottom-box::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-left: 2px solid #111111;
+        }
+        .bottom-box::-webkit-scrollbar-thumb {
+            background: #111111; 
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="header-actions">
+            <a href="index.html" onclick="transitionToPage(event, 'index.html')" class="back-btn">&larr; Bumalik sa Home</a>
+        </div>
+
+        <div class="grid-container">
+            
+            <!-- MAIN BOX 1: TANONG 1 -->
+            <div class="main-box">
+                <div class="top-box">
+                    <h2>Bakit mahalagang matukoy ang uri ng sulatin sa pagbasa at pagsusuri ng mga akademikong teksto?</h2>
+                </div>
+                <div class="bottom-box">
+                    <p>Ang pagtukoy sa uri ng sulatin ay isang mahalagang hakbang sa pagbasa at pagsusuri ng mga akademikong teksto. Bawat uri ng sulatin ay may natatanging layunin, estruktura, at paraan ng paglalahad ng impormasyon. Dahil dito, nagkakaroon ang mambabasa ng mas malinaw na direksiyon kung paano niya uunawain at susuriin ang teksto. Hindi lamang nito pinadadali ang pagkuha ng impormasyon, kundi nakatutulong din ito sa paglinang ng mas malalim na pag-unawa at kritikal na pag-iisip.</p>
+                    <p>Napakahalagang matukoy ang uri ng sulatin dahil agad nitong inilalantad ang layunin, pananaw, at gustong ipahayag ng may-akda sa mga mambabasa. Sa pamamagitan nito, mas nauunawaan kung bakit isinulat ang teksto at kung anong mensahe ang nais nitong ipabatid. Halimbawa, kung ang isang teksto ay feasibility study, inaasahang naglalaman ito ng masusing pagsusuri sa teknikal, pinansyal, at operasyonal na aspeto ng isang proyekto upang matukoy kung ito ay praktikal at kapaki-pakinabang na isagawa. Samantala, kung ito ay impormatibong teksto, nakatuon ito sa paglalahad ng mga datos at katotohanang nagbibigay-kaalaman, habang ang naratibong sulatin naman ay naglalahad ng mga pangyayari o karanasan sa paraang kronolohikal o masining. Sa pagkilala sa mga uring ito, mas madaling matutukoy ng mambabasa ang layunin, estruktura, at paraan ng paglalahad ng impormasyon ng akademikong teksto, kaya nagiging mas epektibo ang pagbasa at pagsusuri nito.</p>
+                    <p>Bukod dito, nagsisilbi rin itong gabay sa pagpili ng mga angkop na estratehiya sa pagbasa at pagsusuri. Ang bawat uri ng sulatin ay nangangailangan ng magkaibang paraan ng pag-aanalisa upang lubos na maunawaan ang nilalaman nito. Kapag natukoy ang uri ng teksto, mas nagiging malinaw ang organisasyon ng mga ideya, ang pagkakaugnay-ugnay ng impormasyon, at ang mga ebidensiyang ginamit ng may-akda. Dahil dito, mas nagiging sistematiko at masusing nasusuri ang teksto sa halip na basta lamang basahin ito.</p>
+                    <p>Sa kabuuan, ang pagkilala sa uri ng sulatin ay mahalaga sapagkat ito ang nagsisilbing pundasyon ng epektibong pagbasa at kritikal na pagsusuri. Pinahuhusay nito ang kakayahan ng mambabasa na maunawaan ang layunin, nilalaman, at organisasyon ng teksto, habang tinutulungan siyang pumili ng angkop na paraan ng pagsusuri. Sa pamamagitan nito, nagiging mas makabuluhan, mas tumpak, at mas kritikal ang pag-unawa sa mga akademikong teksto.</p>
+                </div>
+            </div>
+
+            <!-- MAIN BOX 2: TANONG 2 -->
+            <div class="main-box">
+                <div class="top-box">
+                    <h2>Paano ka makalilikha ng isang sariling sulatin na nagtatampok ng kamalayang panlipunan at naglilinang sa pagpapahalaga sa kultura?</h2>
+                </div>
+                <div class="bottom-box">
+                    <p>Ang paglikha ng isang sulatin na nagtatampok ng kamalayang panlipunan at pagpapahalaga sa kultura ay nangangailangan ng masusing paghahanda, sapat na kaalaman, at pagiging responsable sa paglalahad ng impormasyon. Bilang isang manunulat, mahalagang maunawaan na ang bawat sulatin ay may kakayahang makaimpluwensiya sa pananaw at pag-unawa ng mga mambabasa. Dahil dito, nararapat lamang na ang ating mga akda ay maging tapat sa katotohanan, may paggalang sa iba't ibang kultura, at may layuning makapagbigay ng positibong ambag sa lipunan upang hindi ito dumagdag sa mga problemang hinaharap ng ating komunidad kundi makatutulong sa pagbibigay ng solusyon sa mga ito.</p>
+                    <p>Makalilikha tayo ng ganitong uri ng sulatin sa pamamagitan ng pagkakaroon muna ng sapat na kaalaman tungkol sa paksang tatalakayin. Mahalaga ang pagsasagawa ng masusing pananaliksik gamit ang mapagkakatiwalaang sanggunian upang matiyak ang katumpakan, pagiging napapanahon, at pagiging makatotohanan ng impormasyong ilalahad. Sa ganitong paraan, naiiwasan ang pagkalat ng maling impormasyon at napananatili ang kredibilidad ng sulatin.</p>
+                    <p>Bukod sa pananaliksik, mahalaga ring maging bukas ang isipan at magkaroon ng paggalang sa iba't ibang kultura, tradisyon, at paniniwala. Dapat iwasan ng manunulat ang paggamit ng mga stereotype, labis na paglalahat, at personal na pagkiling na maaaring magbigay ng maling representasyon sa isang komunidad o pangkat ng mga tao. Kung maaari, makabubuting isama ang tunay na karanasan, pananaw, o tinig ng mga taong kabilang sa kulturang tinatalakay upang maging mas makatotohanan, makabuluhan, at kapani-paniwala ang sulatin. Higit sa lahat, dapat na maipakita sa bawat bahagi ng akda ang empatiya, paggalang, at pagpapahalaga sa pagkakaiba-iba ng mga kultura upang maisulong ang pagkakaisa at pag-unawa sa lipunan.</p>
+                    <p>Sa huli, ang isang sulating nagtatampok ng kamalayang panlipunan at pagpapahalaga sa kultura ay hindi lamang nagsisilbing daluyan ng impormasyon kundi nagiging kasangkapan din sa pagpapalaganap ng paggalang, pagkakapantay-pantay, at pagkakaunawaan sa lipunan. Sa pamamagitan ng masusing pananaliksik, responsableng pagsulat, at pagpapakita ng empatiya sa iba't ibang kultura, makalilikha tayo ng mga akdang hindi lamang nagbibigay-kaalaman kundi nagiging inspirasyon din upang pahalagahan ng bawat isa ang sariling kultura habang iginagalang ang kultura at pagkakakilanlan ng iba.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function transitionToPage(event, url) {
+            event.preventDefault();
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 300);
+        }
+    </script>
+
+</body>
+</html>
